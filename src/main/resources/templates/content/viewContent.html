@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Hello</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<div class="container">
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>콘텐츠ID</th>
+        <th>콘텐츠이름</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="content : ${contents}">
+        <td th:text="${content.contentId}"></td>
+        <td th:text="${content.contentName}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div> <!-- /container -->
+<div class="container">
+  <div>
+    <p>
+      <a href="/content-service/">컨텐츠 홈</a>
+    </p>
+  </div>
+</div> <!-- /container -->
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <form action="/content-service/contents/new" method="post">
+        <div class="form-group">
+            <label for="contentId">아이디</label>
+            <input type="text" id="contentId" name="contentId" placeholder="이름을
+입력하세요">
+            <label for="contentName">이름</label>
+            <input type="text" id="contentName" name="contentName" placeholder="이름을
+입력하세요">
+        </div>
+        <button type="submit">등록</button>
+    </form>
+</div> <!-- /container -->
+<div class="container">
+    <div>
+        <p>
+            <a href="/content-service/">컨텐츠 홈</a>
+        </p>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
