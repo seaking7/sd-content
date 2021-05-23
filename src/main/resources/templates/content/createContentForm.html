@@ -1,25 +1,98 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
 <body>
-<div class="container">
-    <form action="/content-service/contents/new" method="post">
-        <div class="form-group">
-            <label for="contentId">아이디</label>
-            <input type="text" id="contentId" name="contentId" placeholder="이름을
-입력하세요">
-            <label for="contentName">이름</label>
-            <input type="text" id="contentName" name="contentName" placeholder="이름을
-입력하세요">
-        </div>
-        <button type="submit">등록</button>
-    </form>
-</div> <!-- /container -->
-<div class="container">
+<div class="menu">
+    <div class="jumbotron text-center">
+        <h1>U+ 컨텐츠</h1>
+        <p>MSA Pilot Project</p>
+    </div>
     <div>
-        <p>
-            <a href="/content-service/">컨텐츠 홈</a>
-        </p>
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark justify-content-center">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/content-service/">컨텐츠 홈</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/content-service/contents/new">컨텐츠 등록</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/content-service/contents">컨텐츠 목록</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/execute-service/content_view">컨텐츠 송출</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/report-service/report">report</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div> <!-- /menu -->
+
+
+
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>About Server</h2>
+            <p><h5>IP : <span th:text="${server_address}"></span></h5></p>
+            <p><h5>PORT : <span th:text="${server_port}"></span></h5></p>
+            <p><h5>content MicroService</h5></p>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <h2>컨텐츠 정보</h2>
+            <h5>content-service의 Maria DB 내용 조회</h5>
+            <div class="container">   <!-- container -->
+                <form action="/content-service/contents/new" method="post">
+                    <div class="form-group">
+                        <label for="contentId">아이디</label>
+                        <input type="text" class="form-control" id="contentId" name="contentId" placeholder="아이디를
+입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="contentName">이름</label>
+                        <input type="text" class="form-control" id="contentName" name="contentName" placeholder="이름을
+입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">경로</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="경로를
+입력하세요">
+                    </div>
+                    <button class="btn btn-primary" type="submit">등록</button>
+                </form>
+            </div> <!-- /container -->
+            <p>Some text..</p>
+            <br>
+        </div>
     </div>
 </div> <!-- /container -->
+<div class="alert alert-success">
+    <strong>Success!</strong> You should <a href="#" class="alert-link">read this message</a>.
+</div>
+
+
 </body>
 </html>

@@ -6,4 +6,5 @@ import lombok.Data;
 public class ContentForm {
     private String contentId;
     private String contentName;
+    private String url;
 }

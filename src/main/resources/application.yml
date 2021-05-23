@@ -5,20 +5,26 @@ server:
 spring:
   application:
     name: content-service
+  zipkin:
+    base-url: http://13.209.136.250:9411
+    enabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     generate-ddl: true
   datasource:
-    url: jdbc:mariadb://13.209.13.28:3306/mydb
+    url: jdbc:mariadb://13.209.136.250:3306/mydb
     driver-class-name: org.mariadb.jdbc.Driver
     username: taekyung
     password: rlaxorud
 
 eureka:
   instance:
-#    hostname: localhost  # PC hosts 파일 문제
+    hostname: localhost  # PC hosts 파일 문제
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     register-with-eureka: true
@@ -29,3 +35,6 @@ eureka:
 logging:
   level:
     com.uplus.sdcontent: DEBUG
+
+my:
+  kafka-server: 13.209.136.250:9092

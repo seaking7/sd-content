@@ -6,4 +6,5 @@ import lombok.Data;
 public class ContentDto {
     private String contentId;
     private String contentName;
+    private String url;
 }
