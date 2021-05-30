@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/execute-service/content_view">컨텐츠 송출</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/report-service/report">리포트</a>
+                    <a class="nav-link disabled" href="/report-service/report">report</a>
                 </li>
             </ul>
         </nav>
@@ -44,10 +44,10 @@
             <p><h5>SERVICE: <span th:text="${server_service}"></span></h5></p>
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/content-service/user/login">로그인</a>
+                    <a class="nav-link" href="/content-service/user/login">로그인</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/content-service/user/registerUser">회원가입</a>
+                    <a class="nav-link active" href="/content-service/user/registerUser">회원가입</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
@@ -59,10 +59,27 @@
             <hr class="d-sm-none">
         </div>
         <div class="col-sm-8">
-            <h2>홈</h2>
-            <h5>content-service의 Maria DB 내용 조회</h5>
+            <h2>회원가입</h2>
+            <h5>가입신청 하세요</h5>
             <div class="container">   <!-- container -->
-                <p>text</p>
+                <form action="/content-service/user/new" method="post">
+                    <div class="form-group">
+                        <label for="email">이메일</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="이메일
+입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="이름을
+입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">패스워드</label>
+                        <input type="text" class="form-control" id="pwd" name="pwd" placeholder="패스워드를
+입력하세요">
+                    </div>
+                    <button class="btn btn-primary" type="submit">가입</button>
+                </form>
             </div> <!-- /container -->
             <br>
         </div>

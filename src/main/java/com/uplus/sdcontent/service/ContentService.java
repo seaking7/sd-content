@@ -5,7 +5,11 @@ import com.uplus.sdcontent.jpa.ContentEntity;
 
 public interface ContentService {
 
-    ContentDto createContent(ContentDto contentDto);
+    void createContent(ContentDto contentDto);
 
     Iterable<ContentEntity> getContentsAll();
+
+    ContentDto getContentsByContentId(String contendId);
+
+    void deleteByContentId(String contentId);
 }

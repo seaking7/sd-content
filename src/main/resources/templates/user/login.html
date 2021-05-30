@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/execute-service/content_view">컨텐츠 송출</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/report-service/report">리포트</a>
+                    <a class="nav-link disabled" href="/report-service/report">report</a>
                 </li>
             </ul>
         </nav>
@@ -59,10 +59,22 @@
             <hr class="d-sm-none">
         </div>
         <div class="col-sm-8">
-            <h2>홈</h2>
+            <h2>로그인</h2>
             <h5>content-service의 Maria DB 내용 조회</h5>
             <div class="container">   <!-- container -->
-                <p>text</p>
+                <form action="/user-service/login" method="post">
+                    <div class="form-group">
+                        <label for="email">이메일</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="이메일
+입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">패스워드</label>
+                        <input type="text" class="form-control" id="password" name="password" placeholder="패스워드를
+입력하세요">
+                    </div>
+                    <button class="btn btn-primary" type="submit">로그인</button>
+                </form>
             </div> <!-- /container -->
             <br>
         </div>

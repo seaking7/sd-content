@@ -24,6 +24,10 @@ public class ContentEntity {
     @Column(nullable = false)
     private String url;
 
+    private String creator;
+    private String cp;
+    private String category;
+
     @Column(nullable = false, updatable = false, insertable = false)
     @ColumnDefault(value = "CURRENT_TIMESTAMP")
     private Date insertDate;

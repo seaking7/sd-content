@@ -6,11 +6,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    function deleteFunc() {
-      alert("I am an alert box!");
-    }
-  </script>
 </head>
 <head>
   <title>Hello</title>
@@ -41,15 +36,21 @@
   </div>
 </div> <!-- /menu -->
 
+
+
+
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-3">
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="/content-service/contents">목록관리</a>
+          <a class="nav-link"  href="/content-service/contents">목록관리</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/content-service/contents/new">등록</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active disabled" >상세</a>
         </li>
       </ul>
       <br>
@@ -64,35 +65,32 @@
       <h2>컨텐츠 정보</h2>
       <h5>content-service의 Maria DB 내용 조회</h5>
       <div class="container">   <!-- container -->
-        <div>
-          <table class="table table-bordered">
-            <thead class="thead-light">
-            <tr>
-              <th>ID</th>
-              <th>이름</th>
-              <th>제작자</th>
-              <th>CP</th>
-              <th>카테고리</th>
-              <th>입력일</th>
-            </tr>
-            </thead>
+        <form action="/content-service/contents/delete" method="post">
+          <table>
             <tbody>
-            <form action="/content-service/contents" method="post">
-            <tr th:each="content : ${contents}">
-              <td>
-                <a th:href="@{'/content-service/'+${content.contentId}+'/contents'}" th:text="${content.contentId}"/></a>
-
-              </td>
-              <td th:text="${content.contentName}"></td>
-              <td th:text="${content.creator}"></td>
-              <td th:text="${content.cp}"></td>
-              <td th:text="${content.category}"></td>
-              <td th:text="${content.insertDate}"></td>
+            <tr>
+              <td width="100"> 아이디 : </td><td width="600"><input type="text" readonly class="form-control" id="contentId" name="contentId" th:value="${contentId}"></td>
             </tr>
-            </form>
+            <tr>
+              <td> 이름 : </td><td><input type="text" readonly class="form-control" id="contentName" name="contentName" th:value="${contentName}"></td>
+            </tr>
+            <tr>
+              <td> 경로 : </td><td><input type="text" readonly class="form-control" id="url" name="url" th:value="${url}"></td>
+            </tr>
+            <tr>
+              <td> 제작자 : </td><td><input type="text" readonly class="form-control"  id="creator" name="creator" th:value="${creator}"></td>
+            </tr>
+            <tr>
+              <td> CP : </td><td><input type="text" readonly class="form-control" id="cp" name="cp" th:value="${cp}"></td>
+            </tr>
+            <tr>
+              <td> 카테고리 : </td><td><input type="text" readonly class="form-control"  id="category" name="category" th:value="${category}"></td>
+            </tr>
             </tbody>
           </table>
-        </div>
+
+          <button class="btn btn-primary" type="submit">삭제</button>
+        </form>
       </div> <!-- /container -->
       <br>
     </div>

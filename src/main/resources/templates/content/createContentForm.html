@@ -20,16 +20,13 @@
                     <a class="nav-link" href="/content-service/">컨텐츠 홈</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/content-service/contents/new">컨텐츠 등록</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/content-service/contents">컨텐츠 목록</a>
+                    <a class="nav-link" href="/content-service/contents">컨텐츠 관리</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/execute-service/content_view">컨텐츠 송출</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="/report-service/report">report</a>
+                    <a class="nav-link" href="/report-service/report">리포트</a>
                 </li>
             </ul>
         </nav>
@@ -37,61 +34,63 @@
 </div> <!-- /menu -->
 
 
-
 <div class="container" style="margin-top:30px">
     <div class="row">
-        <div class="col-sm-4">
-            <h2>About Server</h2>
-            <p><h5>IP : <span th:text="${server_address}"></span></h5></p>
-            <p><h5>PORT : <span th:text="${server_port}"></span></h5></p>
-            <p><h5>content MicroService</h5></p>
+        <div class="col-sm-3">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
+                    <a class="nav-link" href="/content-service/contents">목록관리</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link active" href="#/content-service/contents/new">등록</a>
                 </li>
             </ul>
+            <br>
+            <br>
             <hr class="d-sm-none">
+            <p><h5 class="bg-success text-white">About Server</h5></p>
+            <h6>IP : <span th:text="${server_address}"></span></h6>
+            <h6>PORT : <span th:text="${server_port}"></span></h6>
+            <h6>SERVICE: <span th:text="${server_service}"></span></h6>
         </div>
         <div class="col-sm-8">
             <h2>컨텐츠 정보</h2>
             <h5>content-service의 Maria DB 내용 조회</h5>
             <div class="container">   <!-- container -->
                 <form action="/content-service/contents/new" method="post">
-                    <div class="form-group">
-                        <label for="contentId">아이디</label>
-                        <input type="text" class="form-control" id="contentId" name="contentId" placeholder="아이디를
-입력하세요">
-                    </div>
-                    <div class="form-group">
-                        <label for="contentName">이름</label>
-                        <input type="text" class="form-control" id="contentName" name="contentName" placeholder="이름을
-입력하세요">
-                    </div>
-                    <div class="form-group">
-                        <label for="url">경로</label>
-                        <input type="text" class="form-control" id="url" name="url" placeholder="경로를
-입력하세요">
-                    </div>
-                    <button class="btn btn-primary" type="submit">등록</button>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td width="100"> 아이디 : </td><td width="600">
+                            <input type="text" class="form-control" id="contentId" name="contentId" placeholder="아이디를 입력하세요"></td>
+                        </tr>
+                        <tr>
+                            <td> 이름 : </td><td><input type="text" class="form-control" id="contentName" name="contentName" placeholder="이름을 입력하세요"></td>
+                        </tr>
+                        <tr>
+                            <td> 경로 : </td><td><input type="text" class="form-control" id="url" name="url" placeholder="경로를 입력하세요"></td>
+                        </tr>
+                        <tr>
+                            <td> 제작자 : </td><td><input type="text" class="form-control" id="creator" name="creator" placeholder="제작자를 입력하세요"></td>
+                        </tr>
+                        <tr>
+                            <td> CP : </td><td><input type="text" class="form-control" id="cp" name="cp" placeholder="CP사를 입력하세요"></td>
+                        </tr>
+                        <tr>
+                            <td> 카테고리 : </td><td><input type="text" class="form-control" id="category" name="category" placeholder="카테고리를 입력하세요"></td>
+                        </tr>
+                        <tr></tr>
+                        <tr><td></td><td><button class="btn btn-primary" type="submit">등록</button></td></tr>
+                        </tbody>
+                    </table>
+
+
                 </form>
             </div> <!-- /container -->
-            <p>Some text..</p>
             <br>
         </div>
     </div>
 </div> <!-- /container -->
-<div class="alert alert-success">
-    <strong>Success!</strong> You should <a href="#" class="alert-link">read this message</a>.
-</div>
 
 
 </body>
