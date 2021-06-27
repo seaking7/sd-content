@@ -70,7 +70,7 @@ public class ContentServiceImpl implements ContentService{
         RequestDeleteContent requestDeleteContent = new RequestDeleteContent();
         requestDeleteContent.setContentId(contentId);
 
-        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
+        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("deleteContent");
         circuitBreaker.run(() -> executeServiceClient.deleteExecute(requestDeleteContent),
                 throwable -> true);
 

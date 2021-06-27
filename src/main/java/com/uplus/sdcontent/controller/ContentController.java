@@ -9,11 +9,14 @@ import com.uplus.sdcontent.messagequeue.ContentProducer;
 import com.uplus.sdcontent.messagequeue.KafkaProducer;
 import com.uplus.sdcontent.service.ContentService;
 import com.uplus.sdcontent.vo.*;
+import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -65,8 +68,10 @@ public class ContentController {
     }
 
     @PostMapping("/contents/new")
+    @Timed(value="contents.insert", longTask = true)
     public String createContent(ContentForm form, Model model){
-        System.out.println(form);
+
+        log.info("{createContent} contentId: "+ form.getContentId());
 
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -83,7 +88,10 @@ public class ContentController {
 
 
     @PostMapping("/contents/delete")
+    @Timed(value="contents.delete", longTask = true)
     public String deleteContent(ContentForm form, Model model){
+
+        log.info("{deleteContent} contentId: "+ form.getContentId());
 
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -96,7 +104,10 @@ public class ContentController {
     }
 
     @GetMapping("/contents")
+    @Timed(value="contents.list", longTask = true)
     public String listContents(Model model){
+        log.info("{listContents} list content ");
+
         Iterable<ContentEntity> contentList = contentService.getContentsAll();
         List<ResponseContent> result = new ArrayList<>();
         contentList.forEach( v -> {
@@ -108,9 +119,10 @@ public class ContentController {
     }
 
     @GetMapping("/{contentId}/contents")
+    @Timed(value="contents.detail", longTask = true)
     public String detailContent(@PathVariable String contentId, Model model){
 
-        log.info(contentId);
+        log.info("{detailContent} contentId: "+ contentId);
         ContentDto contentDto = contentService.getContentsByContentId(contentId);
 
         model.addAttribute("contentId", contentDto.getContentId());
@@ -121,6 +133,20 @@ public class ContentController {
         model.addAttribute("category", contentDto.getCategory());
         setEnvModel(model);
         return "content/detailContent";
+    }
+
+    @GetMapping("/{contentId}/contents/client")
+    public ResponseEntity<ResponseContent> selectFromReport(@PathVariable String contentId)
+    {
+        log.info("{selectFromReport} contentId: "+ contentId);
+        ContentDto contentDto = contentService.getContentsByContentId(contentId);
+
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        ResponseContent responseContent = mapper.map(contentDto, ResponseContent.class);
+
+        return ResponseEntity.status(HttpStatus.OK).body(responseContent);
+
     }
 
     public void setEnvModel(Model model){

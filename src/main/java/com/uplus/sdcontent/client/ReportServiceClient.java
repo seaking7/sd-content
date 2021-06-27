@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name="report-service")
 public interface ReportServiceClient {
 
-    @PostMapping("/report-service/report/deleteContent")
+    @PostMapping("/report/deleteContent")
     ResponseReport deleteReport(@RequestBody RequestDeleteContent requestDeleteContent);
 
 

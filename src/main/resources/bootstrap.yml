@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      uri: http://100.51.0.209:8888
+      name: content
+  profiles:
+    active: prod

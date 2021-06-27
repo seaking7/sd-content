@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name="execute-service")
 public interface ExecuteServiceClient {
 
-    @PostMapping("/execute-service/execute/deleteContent")
+    @PostMapping("/execute/deleteContent")
     ResponseContent deleteExecute(@RequestBody RequestDeleteContent requestDeleteContent);
 
 
